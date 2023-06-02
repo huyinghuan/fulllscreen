@@ -57,9 +57,6 @@ namespace mgtv_fulllscreen
         private const int WM_KEYDOWN = 0x0100;
         private const int VK_LWIN = 0x5B;
         private const int VK_RWIN = 0x5C;
-        private const int VK_CONTROL = 0x11;
-        private const int VK_MENU = 0x12;
-        private const int VK_TAB = 0x09;
 
         private delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
 
@@ -135,6 +132,9 @@ namespace mgtv_fulllscreen
                     // 返回非零值以禁用 Windows 键
                     return (IntPtr)1;
                 }
+            }
+            if (wParam == (IntPtr)0x00000104) { 
+                return (IntPtr)1;
             }
 
             return CallNextHookEx(_hookHandle, nCode, wParam, lParam);
